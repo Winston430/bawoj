@@ -1,3 +1,4 @@
+// pages/products/Products.tsx — Bawoj
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -143,7 +144,7 @@ export function Products() {
     const created = await createProduct(input);
     setProducts((prev) => [...prev, created].sort((a, b) => a.name.localeCompare(b.name)));
     setFlashId(created.id);
-    toast.success("Product saved successfully.");
+    toast.success("Item saved successfully.");
   }
 
   async function handleUpdate(id: string, input: Omit<ProductInput, "stock">) {
@@ -152,7 +153,7 @@ export function Products() {
       prev.map((p) => (p.id === id ? { ...p, ...input, updatedAt } : p)).sort((a, b) => a.name.localeCompare(b.name)),
     );
     setFlashId(id);
-    toast.success("Product saved successfully.");
+    toast.success("Item saved successfully.");
   }
 
   async function handleToggleActive(product: Product) {
@@ -162,9 +163,9 @@ export function Products() {
       const { updatedAt } = await setProductActive(product.id, !product.active);
       setProducts((prev) => prev.map((p) => (p.id === product.id ? { ...p, active: !product.active, updatedAt } : p)));
       setFlashId(product.id);
-      toast.success(product.active ? "Product deactivated." : "Product activated.");
+      toast.success(product.active ? "Item deactivated." : "Item activated.");
     } catch {
-      toast.error("Unable to update product status. Please try again.");
+      toast.error("Unable to update item status. Please try again.");
     } finally {
       setTogglingId(null);
     }
@@ -177,9 +178,9 @@ export function Products() {
       await deleteProduct(deleting.id);
       setProducts((prev) => prev.filter((p) => p.id !== deleting.id));
       setDeleting(null);
-      toast.success("Product deleted successfully.");
+      toast.success("Item deleted successfully.");
     } catch {
-      toast.error("Unable to delete product.");
+      toast.error("Unable to delete item.");
     } finally {
       setDeleteSubmitting(false);
     }
@@ -187,7 +188,7 @@ export function Products() {
 
   function handleExport() {
     exportToCsv(
-      "products",
+      "items",
       filtered.map((product) => ({
         Name: product.name,
         Unit: productUnitLabel[product.unit] ?? "",
@@ -205,7 +206,7 @@ export function Products() {
     <div>
       <PageHeader
         title="Products"
-        description="Manage your catalog, pricing, and stock thresholds"
+        description="Manage your stock items, pricing, and thresholds"
         action={
           <>
             <Button
@@ -218,7 +219,7 @@ export function Products() {
             </Button>
             {canCreate && (
               <Button icon={<Plus size={15} />} onClick={openCreate}>
-                Add Product
+                Add Item
               </Button>
             )}
           </>
@@ -238,7 +239,7 @@ export function Products() {
 
       {status === "success" && (
         <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <MetricCard label="Total Products" value={String(stats.totalProducts)} icon={<Package size={16} />} />
+          <MetricCard label="Total Items" value={String(stats.totalProducts)} icon={<Package size={16} />} />
           <MetricCard label="Stock Value" value={formatCurrency(stats.stockValue)} icon={<Coins size={16} />} />
           <MetricCard
             label="Low Stock"
@@ -285,16 +286,16 @@ export function Products() {
         {status === "success" && filtered.length === 0 && (
           <EmptyState
             icon={<Package size={22} />}
-            title={products.length === 0 ? "No products yet" : "No matches"}
+            title={products.length === 0 ? "No items yet" : "No matches"}
             description={
               products.length === 0
-                ? "Add your first product to begin managing your stationery inventory."
+                ? "Add your first item to begin tracking stock."
                 : "Try a different search term or category."
             }
             action={
               products.length === 0 && canCreate ? (
                 <Button size="sm" icon={<Plus size={15} />} onClick={openCreate}>
-                  Add Product
+                  Add Item
                 </Button>
               ) : undefined
             }
@@ -306,7 +307,7 @@ export function Products() {
             <div className="overflow-x-auto">
               <Table>
                 <TableHead>
-                  <Th>Product</Th>
+                  <Th>Item</Th>
                   <Th>Unit</Th>
                   <Th>Category</Th>
                   <Th>Selling Price</Th>
@@ -395,7 +396,7 @@ export function Products() {
         open={deleting !== null}
         onClose={() => setDeleting(null)}
         onConfirm={handleDelete}
-        title="Delete product"
+        title="Delete item"
         description={`Are you sure you want to delete "${deleting?.name}"? This can't be undone.`}
         confirmLabel="Delete"
         danger
@@ -419,7 +420,7 @@ export function Products() {
         }
       >
         <p className="text-[13px] text-text-secondary">
-          Products need a category. Create at least one category before adding a product.
+          Items need a category. Create at least one category before adding an item.
         </p>
       </Modal>
     </div>

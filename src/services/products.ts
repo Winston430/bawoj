@@ -1,3 +1,4 @@
+// services/products.ts — Bawoj
 import {
   addDoc,
   collection,
@@ -60,9 +61,4 @@ export async function setProductActive(id: string, active: boolean): Promise<{ u
 
 export async function deleteProduct(id: string) {
   await deleteDoc(doc(db, "products", id));
-}
-
-export async function isSkuTaken(sku: string, excludeId?: string) {
-  const snapshot = await getDocs(query(productsRef, where("sku", "==", sku)));
-  return snapshot.docs.some((d) => d.id !== excludeId);
 }

@@ -1,3 +1,4 @@
+// types/sale.ts — Bawoj
 export type PaymentMethod = "cash" | "card" | "mobile-money";
 
 export type SaleStatus = "completed" | "refunded" | "cancelled";
@@ -27,6 +28,7 @@ export type StockMovementReason =
   | "sale"
   | "adjustment"
   | "damaged"
+  | "wastage"
   | "return";
 
 export interface StockMovement {

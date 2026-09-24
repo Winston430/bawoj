@@ -13,7 +13,8 @@ type AdjustReason = Exclude<StockMovementReason, "sale">;
 const reasonLabels: Record<AdjustReason, string> = {
   restock: "Restock",
   adjustment: "Manual Adjustment",
-  damaged: "Damaged / Written Off",
+  damaged: "Damaged / Broken",
+  wastage: "Spoiled / Expired",
   return: "Customer Return",
 };
 
@@ -21,7 +22,7 @@ const reasonLabels: Record<AdjustReason, string> = {
 // internally consistent (e.g. "Stock In" can never be logged as "Damaged").
 const reasonsByDirection: Record<Direction, AdjustReason[]> = {
   in: ["restock", "return", "adjustment"],
-  out: ["damaged", "adjustment"],
+  out: ["damaged", "wastage", "adjustment"],
 };
 
 export function AdjustStockModal({

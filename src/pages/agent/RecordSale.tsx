@@ -1,4 +1,4 @@
-// pages/agent/RecordSale.tsx
+// pages/agent/RecordSale.tsx — Bawoj
 import { useEffect, useMemo, useState, type InputHTMLAttributes } from "react";
 import { MagnifyingGlass, Plus, ShoppingCart, Trash } from "@phosphor-icons/react";
 import { PageHeader } from "../../components/ui/PageHeader";
@@ -182,12 +182,12 @@ export function RecordSale() {
 
   return (
     <div>
-      <PageHeader title="New Sale" description="Search products and record a sale" />
+      <PageHeader title="New Sale" description="Search items and record a sale" />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div>
           <Card>
-            <CardHeader title="Search Products" />
+            <CardHeader title="Search Items" />
             <SearchInput
               placeholder="Search by name"
               value={search}
@@ -212,15 +212,15 @@ export function RecordSale() {
               <div className="mt-2">
                 <EmptyState
                   icon={<MagnifyingGlass size={22} />}
-                  title="Search for a product"
-                  description="Type a product name to start adding items to this sale."
+                  title="Search for an item"
+                  description="Type an item name to start adding items to this sale."
                 />
               </div>
             )}
 
             {status === "success" && search.trim() !== "" && results.length === 0 && (
               <p className="mt-4 text-[13px] text-text-muted">
-                No products match "{search}".
+                No items match "{search}".
               </p>
             )}
 
@@ -278,7 +278,7 @@ export function RecordSale() {
             <EmptyState
               icon={<ShoppingCart size={22} />}
               title="Cart is empty"
-              description="Search for a product and add it to start a sale."
+              description="Search for an item and add it to start a sale."
             />
           ) : (
             <div className="flex flex-col gap-4">

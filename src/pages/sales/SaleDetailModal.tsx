@@ -1,4 +1,4 @@
-// pages/sales/SaleDetailModal.tsx
+// pages/sales/SaleDetailModal.tsx — Bawoj
 import { useState } from "react";
 import { WarningCircle } from "@phosphor-icons/react";
 import { Modal } from "../../components/ui/Modal";

@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import {
@@ -51,6 +51,10 @@ export function Login() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    document.title = "Sign In | Bawoj Restaurant";
+  }, []);
+
   if (status === "authenticated") {
     if (isResolvingProfile) {
       return (
@@ -100,7 +104,7 @@ export function Login() {
       aria-hidden="true"
     />
     <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-white/70">
-      HEKIMA VERITAS
+      BAWOJ RESTAURANT
     </span>
   </div>
 
@@ -110,7 +114,7 @@ export function Login() {
       using currentColor, or if the source file is already white. */}
   <img
     src="/logo-wordmark.png" // ← swap for the real asset path
-    alt="Hekima Veritas"
+    alt="Bawoj Restaurant"
     className="mt-3 h-12 w-auto max-w-[220px] object-contain brightness-0 invert"
   />
 </div>
@@ -141,7 +145,7 @@ export function Login() {
           <div className="mb-7 text-center">
             <p className="text-[15px] font-semibold text-text-primary lg:text-[17px] lg:tracking-tight">
               <span className="lg:hidden">
-                Hekima Veritas
+                Bawoj Restaurant
               </span>
 
               <span className="hidden lg:inline">
@@ -227,7 +231,7 @@ export function Login() {
                       : "Show password"
                   }
                   aria-pressed={showPassword}
-                  className="absolute bottom-2.5 right-2.5 flex h-6 w-6 items-center justify-center rounded-sm text-text-muted transition-colors duration-150 hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/35"
+                  className="absolute bottom-2.5 right-2.5 flex h-6 w-6 items-center justify-center rounded-full text-text-muted transition-colors duration-150 hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/35"
                 >
                   {showPassword ? (
                     <EyeSlash size={15} />

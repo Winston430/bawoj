@@ -1,4 +1,4 @@
-// pages/categories/Categories.tsx
+// pages/categories/Categories.tsx — Bawoj
 import { useEffect, useMemo, useState } from "react";
 import {
   ChartBar,
@@ -155,7 +155,7 @@ export function Categories() {
       const inUse = await isCategoryInUse(deleting.id);
       if (inUse) {
         setDeleteError(
-          "This category is assigned to one or more products and can't be deleted.",
+          "This category is assigned to one or more items and can't be deleted.",
         );
         return;
       }
@@ -174,7 +174,7 @@ export function Categories() {
     <div>
       <PageHeader
         title="Categories"
-        description="Group products for easier browsing and reporting"
+        description="Group items for easier browsing and reporting"
         action={
           canCreate ? (
             <Button icon={<Plus size={15} />} onClick={openCreate}>
@@ -203,7 +203,7 @@ export function Categories() {
             icon={<Tag size={16} />}
           />
           <MetricCard
-            label="Categorized Products"
+            label="Categorized Items"
             value={String(stats.categorizedProducts)}
             icon={<Package size={16} />}
           />
@@ -214,7 +214,7 @@ export function Categories() {
             icon={<Prohibit size={16} />}
           />
           <MetricCard
-            label="Avg Products / Category"
+            label="Avg Items / Category"
             value={stats.avgPerCategory.toFixed(1)}
             icon={<ChartBar size={16} />}
           />
@@ -246,7 +246,7 @@ export function Categories() {
             title={categories.length === 0 ? "No categories yet" : "No matches"}
             description={
               categories.length === 0
-                ? "Add your first category to start organizing products."
+                ? "Add your first category to start organizing items."
                 : "Try a different search term."
             }
             action={

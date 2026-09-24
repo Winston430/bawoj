@@ -1,4 +1,4 @@
-// components/layout/SidebarContent.tsx — full file
+// components/layout/SidebarContent.tsx — full file, only the two logo <img> lines change
 import { Gear } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 import { NavLink } from "react-router-dom";
@@ -66,13 +66,13 @@ export function SidebarContent({ collapsed = false }: { collapsed?: boolean }) {
           <img
             src="/icon-v.png" // ← swap for the real asset path
             alt="Hekima Veritas"
-            className="h-9 w-9 object-contain"
+            className="h-9 w-9 object-contain brightness-0"
           />
         ) : (
           <img
             src="/logo-wordmark.png" // ← swap for the real asset path
             alt="Hekima Veritas"
-            className="h-12 w-auto max-w-[180px] object-contain"
+            className="h-12 w-auto max-w-[180px] object-contain brightness-0"
           />
         )}
       </div>

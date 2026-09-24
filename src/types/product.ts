@@ -1,3 +1,4 @@
+// types/product.ts — Bawoj (new project)
 export interface Category {
   id: string;
   name: string;
@@ -6,19 +7,20 @@ export interface Category {
 }
 
 export type ProductUnit =
-  | "pcs" | "doz" | "ctn" | "pack" | "ream" | "box" | "set" | "jar" | "bottle" | "roll";
+  | "kg" | "g" | "liter" | "ml" | "crate" | "tray" | "bag" | "bunch" | "piece" | "carton" | "sack";
 
 export const productUnitLabel: Record<ProductUnit, string> = {
-  pcs: "Pcs",
-  doz: "Doz",
-  ctn: "Ctn",
-  pack: "Pack",
-  ream: "Ream",
-  box: "Box",
-  set: "Set",
-  jar: "Jar",
-  bottle: "Bottle",
-  roll: "Roll",
+  kg: "Kg",
+  g: "Grams",
+  liter: "Liter",
+  ml: "Ml",
+  crate: "Crate",
+  tray: "Tray",
+  bag: "Bag",
+  bunch: "Bunch",
+  piece: "Piece",
+  carton: "Carton",
+  sack: "Sack",
 };
 
 export interface Product {

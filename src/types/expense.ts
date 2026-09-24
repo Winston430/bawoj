@@ -2,10 +2,12 @@
 export type ExpenseCategory =
   | "rent"
   | "utilities"
+  | "gas"
   | "salaries"
   | "transport"
   | "supplies"
   | "food"
+  | "licenses_permits"
   | "maintenance"
   | "other";
 
@@ -26,10 +28,12 @@ export interface Expense {
 export const expenseCategoryLabel: Record<ExpenseCategory, string> = {
   rent: "Rent",
   utilities: "Utilities",
+  gas: "Gas / Cooking Fuel",
   salaries: "Salaries",
   transport: "Transport",
   supplies: "Supplies",
   food: "Food",
+  licenses_permits: "Licenses & Permits",
   maintenance: "Maintenance",
   other: "Other",
 };

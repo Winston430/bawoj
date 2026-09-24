@@ -1,4 +1,4 @@
-// pages/sales/Sales.tsx
+// pages/sales/Sales.tsx — Bawoj
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowCounterClockwise,

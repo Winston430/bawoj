@@ -36,11 +36,12 @@ export function PageHeaderProvider({
     [header],
   );
 
-  useEffect(() => {
-    document.title = header?.title
-      ? `${header.title} | Hekima Veritas`
-      : "Hekima Veritas";
-  }, [header]);
+// context/PageHeaderContext.tsx — only this one line changes
+useEffect(() => {
+  document.title = header?.title
+    ? `${header.title} | Bawoj Restaurant`
+    : "Bawoj Restaurant";
+}, [header]);
 
   return (
     <PageHeaderContext.Provider value={value}>
@@ -82,3 +83,4 @@ export function usePageHeader(
     };
   }, [title, description, setHeader]);
 }
+

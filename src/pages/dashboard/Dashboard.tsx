@@ -71,7 +71,7 @@ export function Dashboard() {
               icon={<WarningCircle size={16} />}
             />
             <MetricCard
-              label="Active Products"
+              label="Active Items"
               value={String(data.activeProductCount)}
               icon={<Package size={16} />}
             />

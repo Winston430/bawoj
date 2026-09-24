@@ -1,4 +1,4 @@
-// types/permissions.ts — new file
+// types/permissions.ts — Bawoj, only the "products" group's labels change
 export type Permission =
   | "products.view"
   | "products.create"
@@ -31,17 +31,15 @@ export interface PermissionGroup {
   permissions: { key: Permission; label: string }[];
 }
 
-/** Drives the checkbox picker in UserFormModal and PermissionsModal —
- *  grouped by resource so the UI stays organized as permissions grow. */
 export const PERMISSION_GROUPS: PermissionGroup[] = [
   {
     resource: "products",
-    label: "Products",
+    label: "Items",
     permissions: [
-      { key: "products.view", label: "View products" },
-      { key: "products.create", label: "Add products" },
-      { key: "products.edit", label: "Edit products" },
-      { key: "products.delete", label: "Delete products" },
+      { key: "products.view", label: "View items" },
+      { key: "products.create", label: "Add items" },
+      { key: "products.edit", label: "Edit items" },
+      { key: "products.delete", label: "Delete items" },
     ],
   },
   {

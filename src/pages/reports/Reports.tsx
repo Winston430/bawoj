@@ -1,4 +1,4 @@
-// pages/reports/Reports.tsx
+// pages/reports/Reports.tsx — Bawoj
 import { useEffect, useMemo, useState } from "react";
 import { DownloadSimple, WarningCircle } from "@phosphor-icons/react";
 import { PageHeader } from "../../components/ui/PageHeader";
@@ -34,10 +34,6 @@ import type { LineChartPoint } from "../../components/charts/LineChart";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-// Caps how many bars the Profit chart renders — a wide range grouped
-// into many periods would otherwise squeeze bars down to slivers.
-// Revenue Trend (a line chart) doesn't have this problem, so it isn't
-// capped and always reflects the full selected range.
 const MAX_PROFIT_CHART_PERIODS = 5;
 
 type RangeMode = "today" | "yesterday" | "7" | "30" | "90" | "all" | "custom";
@@ -52,8 +48,6 @@ const rangeOptions: { value: RangeMode; label: string }[] = [
   { value: "custom", label: "Custom Range" },
 ];
 
-// "Daily" was intentionally removed — Today/Yesterday now cover the
-// single-day case as precise range filters instead of a grouping option.
 const granularityOptions: { value: Granularity; label: string }[] = [
   { value: "week", label: "Weekly" },
   { value: "month", label: "Monthly" },
@@ -74,8 +68,6 @@ export function Reports() {
   const [customTo, setCustomTo] = useState("");
   const [granularity, setGranularity] = useState<Granularity>("week");
 
-  // Loaded independently of useReportsData — that hook doesn't know
-  // about expenses, and I don't have its source to safely extend.
   useEffect(() => {
     listAllExpenses()
       .then(setExpenses)
@@ -114,9 +106,6 @@ export function Reports() {
     ? Math.ceil((resolvedRange.end - resolvedRange.start) / DAY_MS)
     : null;
 
-  // Re-picks a sensible granularity whenever the range selection itself
-  // changes — not on every render — so a manual override survives until
-  // the person picks a different range.
   useEffect(() => {
     setGranularity(defaultGranularityForRangeDays(rangeDays));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,9 +140,6 @@ export function Reports() {
     [scopedSales, products, granularity],
   );
 
-  // Assumes LineChartPoint is { label: string; value: number } — the
-  // shape RevenueTrendCard's formatValue usage implies. Send LineChart.tsx
-  // if that's wrong; only this mapping line would need to change.
   const revenueSeries: LineChartPoint[] = useMemo(
     () => periodBuckets.map((b) => ({ label: b.label, value: b.revenue })),
     [periodBuckets],
@@ -162,7 +148,7 @@ export function Reports() {
   const profitSeries = useMemo(
     () =>
       periodBuckets
-        .slice(-MAX_PROFIT_CHART_PERIODS) // most recent N periods only
+        .slice(-MAX_PROFIT_CHART_PERIODS)
         .map((b) => ({ label: b.label, value: b.profit })),
     [periodBuckets],
   );

@@ -1,3 +1,4 @@
+// pages/products/ProductFormModal.tsx — Bawoj
 import { useEffect, useState, type FormEvent } from "react";
 import { WarningCircle } from "@phosphor-icons/react";
 import { Modal } from "../../components/ui/Modal";
@@ -23,7 +24,7 @@ interface FormState {
 function emptyForm(defaultCategoryId: string): FormState {
   return {
     name: "",
-    unit: "pcs",
+    unit: "piece",
     categoryId: defaultCategoryId,
     costPrice: "",
     sellingPrice: "",
@@ -37,7 +38,7 @@ function emptyForm(defaultCategoryId: string): FormState {
 function toForm(product: Product): FormState {
   return {
     name: product.name,
-    unit: product.unit ?? "pcs", // legacy products may not have this set yet
+    unit: product.unit ?? "piece",
     categoryId: product.categoryId,
     costPrice: String(product.costPrice),
     sellingPrice: String(product.sellingPrice),
@@ -155,7 +156,7 @@ export function ProductFormModal({
       }
       onClose();
     } catch {
-      setError("Unable to save product. Please try again.");
+      setError("Unable to save item. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -165,7 +166,7 @@ export function ProductFormModal({
     <Modal
       open={open}
       onClose={onClose}
-      title={product ? "Edit Product" : "Add Product"}
+      title={product ? "Edit Item" : "Add Item"}
       width="lg"
       footer={
         <>
@@ -183,7 +184,7 @@ export function ProductFormModal({
                 Saving
               </span>
             ) : (
-              "Save Product"
+              "Save Item"
             )}
           </Button>
         </>
@@ -193,7 +194,7 @@ export function ProductFormModal({
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Input
             id="product-name"
-            label="Product Name"
+            label="Item Name"
             value={form.name}
             onChange={(e) => set("name", e.target.value)}
           />

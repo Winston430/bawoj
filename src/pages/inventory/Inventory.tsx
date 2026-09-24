@@ -1,6 +1,6 @@
-// pages/inventory/Inventory.tsx
+// pages/inventory/Inventory.tsx — Bawoj
 import { useEffect, useMemo, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Stack } from "@phosphor-icons/react";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { Card, CardHeader } from "../../components/ui/Card";
@@ -21,7 +21,6 @@ import type { StockMovement, StockMovementReason } from "../../types/sale";
 import { toast } from "../../lib/toast";
 import { AdjustStockModal } from "./AdjustStockModal";
 
-
 type PageStatus = "loading" | "success" | "error";
 
 const PRODUCTS_PAGE_SIZE = 10;
@@ -35,11 +34,16 @@ const statusFilters: { value: "all" | StockStatus; label: string }[] = [
   { value: "out-of-stock", label: "Out of Stock" },
 ];
 
+// Covers all six Bawoj reasons — wastage included, unlike Stationery
+// Manager's five-reason version this was forked from. Missing a key here
+// silently rendered a blank cell in the movement table, so this map and
+// StockMovementReason must always stay in sync.
 const movementReasonLabel: Record<StockMovementReason, string> = {
   restock: "Restock",
   sale: "Sale",
   adjustment: "Adjustment",
   damaged: "Damaged",
+  wastage: "Spoiled / Expired",
   return: "Return",
 };
 
@@ -53,8 +57,7 @@ export function Inventory() {
   const [status, setStatus] = useState<PageStatus>("loading");
   const [products, setProducts] = useState<Product[]>([]);
   const [movements, setMovements] = useState<StockMovement[]>([]);
-  const [searchParams] = useSearchParams();
-  const [search, setSearch] = useState(searchParams.get("search") ?? "");
+  const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | StockStatus>("all");
   const [adjusting, setAdjusting] = useState<Product | null>(null);
   const [flashId, setFlashId] = useState<string | null>(null);
@@ -187,10 +190,10 @@ export function Inventory() {
           {status === "success" && filtered.length === 0 && (
             <EmptyState
               icon={<Stack size={22} />}
-              title={products.length === 0 ? "No products yet" : "No matches"}
+              title={products.length === 0 ? "No items yet" : "No matches"}
               description={
                 products.length === 0
-                  ? "Add products first to start tracking inventory."
+                  ? "Add items first to start tracking inventory."
                   : "Try a different search term or status filter."
               }
               action={
@@ -208,7 +211,7 @@ export function Inventory() {
               <div className="overflow-x-auto">
                 <Table>
                   <TableHead>
-                    <Th>Product</Th>
+                    <Th>Item</Th>
                     <Th>Unit</Th>
                     <Th>Stock</Th>
                     <Th>Minimum</Th>
@@ -299,7 +302,7 @@ export function Inventory() {
               <div className="overflow-x-auto">
                 <Table>
                   <TableHead>
-                    <Th>Product</Th>
+                    <Th>Item</Th>
                     <Th>Previous</Th>
                     <Th>Change</Th>
                     <Th>New</Th>

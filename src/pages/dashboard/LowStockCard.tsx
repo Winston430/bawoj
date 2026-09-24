@@ -1,3 +1,4 @@
+// pages/dashboard/LowStockCard.tsx — Bawoj
 import { Link } from "react-router-dom";
 import { ArrowRight, Package } from "@phosphor-icons/react";
 import { Card, CardHeader } from "../../components/ui/Card";
@@ -8,7 +9,6 @@ import { getStockStatus, productUnitLabel, type Product } from "../../types/prod
 const VISIBLE_LIMIT = 6;
 
 export function LowStockCard({ products }: { products: Product[] }) {
-  // Out-of-stock first — more urgent than "low but still sellable."
   const sorted = [...products].sort((a, b) => {
     const aOut = getStockStatus(a) === "out-of-stock" ? 0 : 1;
     const bOut = getStockStatus(b) === "out-of-stock" ? 0 : 1;
@@ -31,7 +31,7 @@ export function LowStockCard({ products }: { products: Product[] }) {
         <EmptyState
           icon={<Package size={22} />}
           title="Stock levels are healthy"
-          description="No products are currently below their minimum stock threshold."
+          description="No items are currently below their minimum stock threshold."
         />
       ) : (
         <>
