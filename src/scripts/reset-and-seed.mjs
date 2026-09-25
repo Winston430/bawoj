@@ -17,7 +17,7 @@ import admin from "firebase-admin";
 import { readFileSync } from "node:fs";
 import { createInterface } from "node:readline/promises";
 
-const NEW_ADMIN_EMAIL = "admin@hkm.co.tz";
+const NEW_ADMIN_EMAIL = "developer@zentrya.co.tz";
 const NEW_ADMIN_PASSWORD = "20052oo5";
 const NEW_ADMIN_NAME = "Admin";
 
